@@ -2,7 +2,7 @@ use std::collections::HashSet;
 use std::fmt::Display;
 
 use clap::Args;
-use itertools::{Chunks, IntoChunks, Itertools};
+use itertools::Itertools;
 
 const INPUT: &str = include_str!("input");
 
@@ -112,10 +112,10 @@ impl Command {
                         .chain(r3.compartment2.iter().cloned()),
                 );
 
-                let i1:HashSet<&Item> = HashSet::from_iter(s1.intersection(&s2).into_iter());
-                let i2:HashSet<&Item> = HashSet::from_iter(s2.intersection(&s3).into_iter());
-                
-                let i3:HashSet<&&Item> = HashSet::from_iter(i1.intersection(&i2).into_iter());
+                let i1: HashSet<&Item> = HashSet::from_iter(s1.intersection(&s2).into_iter());
+                let i2: HashSet<&Item> = HashSet::from_iter(s2.intersection(&s3).into_iter());
+
+                let i3: HashSet<&&Item> = HashSet::from_iter(i1.intersection(&i2).into_iter());
 
                 for in_all in i3 {
                     value += in_all.priority();
