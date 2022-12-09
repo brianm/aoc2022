@@ -7,53 +7,40 @@ pub struct Command {
     name: Option<String>,
 }
 
-impl Command {
-    pub fn part2(&self) {
-        let input = include_str!("input");
-        let mut top = BinaryHeap::new();
-        let mut current = 0;
-        for line in input.lines() {
-            let num = line.parse::<i32>();
+const INPUT: &str = include_str!("input");
 
-            match num {
-                Ok(num) => {
-                    current += num;
-                }
-                Err(_) => {
-                    top.push(Reverse(current));
-                    if top.len() > 3 {
-                        top.pop();
-                    }                    
-                    current = 0;
-                }
+fn top_sum(n: usize) -> u32 {
+    let mut top = BinaryHeap::new();
+    let mut current = 032;
+    for line in INPUT.lines() {
+        let num = line.parse::<u32>();
+
+        match num {
+            Ok(num) => {
+                current += num;
+            }
+            Err(_) => {
+                top.push(Reverse(current));
+                if top.len() > n {
+                    top.pop();
+                }                    
+                current = 0;
             }
         }
-        let mut sum = 0;
-        for Reverse(val) in top {
-            sum += val;
-        }
-        println!("{}", sum);
+    }
+    let mut sum = 0u32;
+    for Reverse(val) in top {
+        sum += val;
+    }
+    return sum;
+}
+
+impl Command {
+    pub fn part1(&self) {
+        println!("{}", top_sum(1));
     }
 
-    pub fn part1(&self) {
-        let input = include_str!("input");
-        let mut max = -1;
-        let mut current = 0;
-        for line in input.lines() {
-            let num = line.parse::<i32>();
-
-            match num {
-                Ok(num) => {
-                    current += num;
-                }
-                Err(_) => {
-                    if current > max {
-                        max = current;
-                    }
-                    current = 0;
-                }
-            }
-        }
-        println!("{}", max);
+    pub fn part2(&self) {
+        println!("{}", top_sum(3));
     }
 }
