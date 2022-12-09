@@ -1,5 +1,6 @@
 mod day1;
 mod day2;
+mod day3;
 
 use clap::{Parser, Subcommand};
 
@@ -13,9 +14,9 @@ struct Cli {
 
 #[derive(Subcommand)]
 enum Commands {
-    /// Adds files to myapp
     Day1(day1::Command),
     Day2(day2::Command),
+    Day3(day3::Command),
 }
 
 fn main() {
@@ -27,6 +28,10 @@ fn main() {
             cmd.part2();
         }
         Commands::Day2(cmd) => {
+            println!("Part 1\t{}", cmd.part1());
+            println!("Part 2\t{}", cmd.part2());
+        }
+        Commands::Day3(cmd) => {
             println!("Part 1\t{}", cmd.part1());
             println!("Part 2\t{}", cmd.part2());
         }

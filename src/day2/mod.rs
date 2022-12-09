@@ -65,24 +65,21 @@ impl Move {
             Move::Scissors => Move::Scissors,
         }
     }
-    
 }
 
-
 fn score(other: Move, me: Move) -> u32 {
-    me.value() + if other.play_against(&me) {
-        0u32
-    } else if me.play_against(&other) {
-        6u32
-    } else {
-        3u32
-    }
+    me.value()
+        + if other.play_against(&me) {
+            0u32
+        } else if me.play_against(&other) {
+            6u32
+        } else {
+            3u32
+        }
 }
 
 #[derive(Args, Debug)]
-pub struct Command {
-}
-
+pub struct Command {}
 
 impl Command {
     pub fn part2(&self) -> Box<dyn std::fmt::Display> {

@@ -1,10 +1,9 @@
 use clap::Args;
-use std::collections::BinaryHeap;
 use core::cmp::Reverse;
+use std::collections::BinaryHeap;
 
 #[derive(Args)]
-pub struct Command {
-}
+pub struct Command {}
 
 const INPUT: &str = include_str!("input");
 
@@ -22,7 +21,7 @@ fn top_sum(n: usize) -> u32 {
                 top.push(Reverse(current));
                 if top.len() > n {
                     top.pop();
-                }                    
+                }
                 current = 0;
             }
         }
