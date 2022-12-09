@@ -4,7 +4,6 @@ use core::cmp::Reverse;
 
 #[derive(Args)]
 pub struct Command {
-    name: Option<String>,
 }
 
 const INPUT: &str = include_str!("input");
