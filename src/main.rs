@@ -1,6 +1,7 @@
 mod day1;
 mod day2;
 mod day3;
+mod day4;
 
 use clap::{Parser, Subcommand};
 
@@ -17,6 +18,7 @@ enum Commands {
     Day1(day1::Command),
     Day2(day2::Command),
     Day3(day3::Command),
+    Day4(day4::Command),
 }
 
 fn main() {
@@ -32,6 +34,10 @@ fn main() {
             println!("Part 2\t{}", cmd.part2());
         }
         Commands::Day3(cmd) => {
+            println!("Part 1\t{}", cmd.part1());
+            println!("Part 2\t{}", cmd.part2());
+        }
+        Commands::Day4(cmd) => {
             println!("Part 1\t{}", cmd.part1());
             println!("Part 2\t{}", cmd.part2());
         }
